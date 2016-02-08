@@ -1,0 +1,48 @@
+<body ng-app="fileUpload" ng-controller="MyCtrl">
+     <h4>Upload on file select</h4>
+
+    <button ngf-select="uploadFiles($files)" multiple
+            accept="image/*">Select Files</button>
+    <br>
+    <br>Files:
+    <ul>
+        <li ng-repeat="f in files" style="font:smaller">
+            {{f.name}}
+        </li>
+    </ul>
+    <span class="progress" ng-show="progress >= 0">
+        <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+    </span>
+    {{errorMsg}}
+</body>
+<script type="text/javascript" src="angular.js"></script>
+<script type="text/javascript" src="ng-file-upload.js"></script>
+<script type="text/javascript">
+//inject angular file upload directives and services.
+var app = angular.module('fileUpload', ['ngFileUpload']);
+
+app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+  $scope.uploadFiles = function (files) {
+      $scope.files = files;
+      if (files && files.length) {
+          Upload.upload({
+              url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+              data: {
+                  files: files
+              }
+          }).then(function (response) {
+              $timeout(function () {
+                  $scope.result = response.data;
+              });
+          }, function (response) {
+              if (response.status > 0) {
+                  $scope.errorMsg = response.status + ': ' + response.data;
+              }
+          }, function (evt) {
+              $scope.progress =
+                  Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+          });
+      }
+  };
+}]);
+</script>
