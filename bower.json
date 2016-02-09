@@ -1,0 +1,23 @@
+{
+  "name": "angular-file-upload",
+  "description": "",
+  "main": "angular.js",
+  "authors": [
+    "itwadesh <itswadesh@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/itswadesh/angular-file-upload",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.0",
+    "ng-file-upload": "~11.2.3",
+    "ng-file-upload-shim": "~11.2.3"
+  }
+}
