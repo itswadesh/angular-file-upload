@@ -7,7 +7,8 @@ var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 
 app.use(multiparty({
-    uploadDir: './uploads'
+    uploadDir: './uploads',
+    fileName: 'xxx'
 }));
 
 app.post('/upload', multipartyMiddleware, function(req, resp) {

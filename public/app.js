@@ -1,4 +1,4 @@
-//inject angular file upload directives and services.
+//Simple multiple file upload implemented by angularcode.com
 var app = angular.module('fileUpload', ['ngFileUpload']);
 
 app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
